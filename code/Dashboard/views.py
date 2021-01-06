@@ -25,7 +25,7 @@ LOGGER = logging.getLogger('Dashboard.views')
 LOGGER.addHandler(LOG_HANDLER)
 
 
-HITS_REQUIRED_BEFORE_ENGLISH_ALLOWED = 5
+HITS_REQUIRED_BEFORE_ENGLISH_ALLOWED = 0
 
 # HTTP error handlers supporting COMMIT_TAG.
 def _page_not_found(request, template_name='404.html'):
