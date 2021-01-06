@@ -259,7 +259,6 @@ def dashboard(request):
     # Check if marketTargetLanguage for current_task matches user languages.
     if current_task:
         code = current_task.marketTargetLanguageCode()
-        print(request.user.groups.all())
         if code not in request.user.groups.values_list('name', flat=True):
             LOGGER.info('Language {0} not in user languages for user {1}. ' \
               'Giving up task {2}'.format(code, request.user.username,
@@ -275,7 +274,6 @@ def dashboard(request):
     # Check if marketTargetLanguage for current_task matches user languages.
     if current_task:
         code = current_task.marketTargetLanguageCode()
-        print(request.user.groups.all())
         if code not in request.user.groups.values_list('name', flat=True):
             LOGGER.info('Language {0} not in user languages for user {1}. ' \
               'Giving up task {2}'.format(code, request.user.username,
@@ -350,10 +348,6 @@ def dashboard(request):
                     else:
                         multimodal_languages[campaign.campaignName].remove(code)
 
-            print("campaign = {0} languages = {1}".format(
-              campaign.campaignName, campaign_languages[campaign.campaignName] if not is_multi_modal_campaign else multimodal_languages[campaign.campaignName]
-            ))
-
     t3 = datetime.now()
 
     duration = DirectAssessmentResult.get_time_for_user(request.user)
@@ -369,14 +363,10 @@ def dashboard(request):
         for value in values:
             all_languages.append((value, LANGUAGE_CODES_AND_NAMES[value], key))
 
-    print(str(all_languages).encode('utf-8'))
-
     mmt_languages = []
     for key, values in multimodal_languages.items():
         for value in values:
             mmt_languages.append((value, LANGUAGE_CODES_AND_NAMES[value], key))
-
-    print(str(mmt_languages).encode('utf-8'))
 
     is_multi_modal_campaign = False
     if current_task:
